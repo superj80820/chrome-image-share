@@ -1,138 +1,80 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
+  <v-container>
+    <v-layout text-center wrap>
+      <input type="file" @change="handleImage" accept="image/*" ref="image" />
+      <v-col align="center" justify="center">
+        <img :src="imgSrc" style="max-width: 100%;" />
+        <v-btn v-if="switchInputOrCopy" @click="_clickInputBtn"
+          >拍照或上傳圖檔</v-btn
         >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest"
-          target="_blank"
-          rel="noopener"
-          >unit-jest</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
-  </div>
+        <div v-if="!switchInputOrCopy">
+          <v-btn v-clipboard:copy="imgSrc">複製 URL!</v-btn>
+          <v-btn v-clipboard:copy="markdownMsg">複製 markdown!</v-btn>
+        </div>
+      </v-col>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
+const axios = require("axios").default;
+const FormData = require("form-data");
+
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+  data: () => ({
+    imgSrc: ""
+  }),
+  computed: {
+    switchInputOrCopy: function() {
+      return this.imgSrc === "";
+    },
+    markdownMsg: function() {
+      return `![](${this.imgSrc})`;
+    }
+  },
+  mounted() {
+    if (this.$route.query.imgurId !== undefined) {
+      this.imgSrc = `https://imgur.com/${this.$route.query.imgurId}.jpg`;
+    }
+  },
+  methods: {
+    handleImage() {
+      let form = new FormData();
+      form.append("image", this.$refs.image.files[0]);
+      this._uploadToImgur(form).then(response => {
+        this.imgSrc = `https://imgur.com/${response.data.data.id}.jpg`;
+        this.$router.push({
+          path: "/",
+          query: { imgurId: response.data.data.id }
+        });
+      });
+    },
+    _uploadToImgur(form) {
+      return axios({
+        method: "post",
+        url: "https://api.imgur.com/3/image",
+        data: form,
+        headers: {
+          Authorization: "Client-ID e74a559c959567b",
+          "Content-Type": "multipart/form-data"
+        }
+      })
+        .then(function(response) {
+          return Promise.resolve(response);
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    },
+    _clickInputBtn() {
+      this.$refs.image.click();
+    }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+<style>
+input[type="file"] {
+  display: none;
 }
 </style>
