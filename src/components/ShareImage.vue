@@ -9,7 +9,7 @@
             color="primary"
           ></v-progress-circular>
         </v-overlay>
-        <img :src="imgSrc" style="max-width: 100%;" />
+        <img :src="imgSrc" style="max-width: 100%; max-height: 750px" />
         <v-row align="center" justify="center">
           <v-btn color="primary" @click="_clickInputBtn">拍照或上傳圖檔</v-btn>
         </v-row>
