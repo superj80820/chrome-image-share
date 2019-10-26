@@ -16,41 +16,41 @@
 
 [Demo影片](https://www.youtube.com/watch?v=IsOFT3r52Lk)
 
-你可以先把這個網站存在桌面，會更加方便
+👉 你可以先把這個網站存在桌面，會更加方便
 
-<img src="https://i.imgur.com/QDoH8DE.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/QDoH8DE.jpg" height="450px" />
 
-點選**拍照或上傳圖檔**
+👉 點選**拍照或上傳圖檔**
 
-<img src="https://i.imgur.com/J0IuKed.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/J0IuKed.jpg" height="450px" />
 
-開拍!
+👉 開拍!
 
-<img src="https://i.imgur.com/atzsZs4.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/atzsZs4.jpg" height="450px" />
 
-<img src="https://i.imgur.com/GZH78N0.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/GZH78N0.jpg" height="450px" />
 
-之後會快速把你的圖片以**匿名**的方式上傳至imgur
+👉 之後會快速把你的圖片以**匿名**的方式上傳至imgur
 
-<img src="https://i.imgur.com/U2mxyiC.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/U2mxyiC.jpg" height="450px" />
 
-<img src="https://i.imgur.com/0YHGqtG.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/0YHGqtG.jpg" height="450px" />
 
-最後點選**分享**>**傳送至你的裝置**>**選擇你的電腦**
+👉 最後點選**分享**>**傳送至你的裝置**>**選擇你的電腦**
 
-<img src="https://i.imgur.com/SRgy0P8.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/SRgy0P8.jpg" height="450px" />
 
-<img src="https://i.imgur.com/XAIHdVj.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/XAIHdVj.jpg" height="450px" />
 
-<img src="https://i.imgur.com/Q7cVBEc.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/Q7cVBEc.jpg" height="450px" />
 
-之後你的**電腦**就會跳出分享訊息，直接點選它，就可以載圖或者用Markdown啦
+👉 之後你的**電腦**就會跳出分享訊息，直接點選它，就可以載圖或者用Markdown啦
 
-<img src="https://i.imgur.com/1AoFRJQ.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/1AoFRJQ.jpg" height="450px" />
 
-<img src="https://i.imgur.com/ilhqVfL.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/ilhqVfL.jpg" height="450px" />
 
-<img src="https://i.imgur.com/ZszTTzy.jpg" style="height: 450px" />
+<img src="https://i.imgur.com/ZszTTzy.jpg" height="450px" />
 
 ## Project setup
 ```
