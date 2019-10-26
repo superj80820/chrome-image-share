@@ -14,6 +14,8 @@
 
 [點選此連結即可](https://superj80820.github.io/projects/chrome-image-share)
 
+[Demo影片](https://www.youtube.com/watch?v=IsOFT3r52Lk)
+
 你可以先把這個網站存在桌面，會更加方便
 
 <img src="https://i.imgur.com/QDoH8DE.jpg" style="height: 450px" />
