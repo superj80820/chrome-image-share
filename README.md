@@ -1,5 +1,7 @@
 # chrome-image-share
 
+利用Chrome的[「傳送至其他裝置」](https://www.playpcesor.com/2019/09/chrome-send.html)的新功能來讓手機與電腦更方便傳圖
+
 這個小應用主要是我在**電腦上**使用Markdown、Word以及Medium這些文字編輯器時
 
 常會需要把現實的東西拍起來並且傳到文檔裡
