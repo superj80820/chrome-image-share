@@ -16,18 +16,18 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <ShareImage />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import ShareImage from "./components/ShareImage";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    ShareImage
   },
   data: () => ({
     //

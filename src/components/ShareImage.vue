@@ -3,14 +3,22 @@
     <v-layout text-center wrap>
       <input type="file" @change="handleImage" accept="image/*" ref="image" />
       <v-col align="center" justify="center">
+        <v-overlay :value="overlay">
+          <v-progress-circular
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
+        </v-overlay>
         <img :src="imgSrc" style="max-width: 100%;" />
-        <v-btn v-if="switchInputOrCopy" @click="_clickInputBtn"
-          >拍照或上傳圖檔</v-btn
-        >
-        <div v-if="!switchInputOrCopy">
-          <v-btn v-clipboard:copy="imgSrc">複製 URL!</v-btn>
-          <v-btn v-clipboard:copy="markdownMsg">複製 markdown!</v-btn>
-        </div>
+        <v-row align="center" justify="center">
+          <v-btn color="primary" @click="_clickInputBtn">拍照或上傳圖檔</v-btn>
+        </v-row>
+        <v-row v-if="!switchInputOrCopy" align="center" justify="center">
+          <v-btn color="success" v-clipboard:copy="imgSrc">複製 URL!</v-btn>
+          <v-btn color="success" v-clipboard:copy="markdownMsg"
+            >複製 markdown!</v-btn
+          >
+        </v-row>
       </v-col>
     </v-layout>
   </v-container>
@@ -22,7 +30,8 @@ const FormData = require("form-data");
 
 export default {
   data: () => ({
-    imgSrc: ""
+    imgSrc: "",
+    overlay: false
   }),
   computed: {
     switchInputOrCopy: function() {
@@ -41,12 +50,14 @@ export default {
     handleImage() {
       let form = new FormData();
       form.append("image", this.$refs.image.files[0]);
+      this.overlay = true;
       this._uploadToImgur(form).then(response => {
         this.imgSrc = `https://imgur.com/${response.data.data.id}.jpg`;
         this.$router.push({
           path: "/",
           query: { imgurId: response.data.data.id }
         });
+        this.overlay = false;
       });
     },
     _uploadToImgur(form) {
@@ -76,5 +87,8 @@ export default {
 <style>
 input[type="file"] {
   display: none;
+}
+.v-btn {
+  margin: 5px;
 }
 </style>
