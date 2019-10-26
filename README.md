@@ -79,3 +79,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Reference
+
+[Imgur-Upload](https://github.com/carry0987/Imgur-Upload)
